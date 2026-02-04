@@ -1,0 +1,122 @@
+double functionM(void);
+int functionN(int n, double x);
+double functionO(double, int, double, int);
+double functionP(int a, int n, int b, int c);
+ 
+int main(void) {
+  	int a, b, c, d, e;
+  	double r, s, t, u, v;
+  	//function calling (a-k)
+     functionM();
+a = functionM();
+}
+
+a) functionM();
+
+ถูกต้อง
+
+functionM ไม่รับพารามิเตอร์ (void)
+
+เรียกเฉย ๆ ได้ แม้ไม่เอาค่าที่ return มาใช้
+
+b) a = functionM();
+
+ไม่ผิดทางไวยากรณ์ แต่มีปัญหา
+
+functionM() → double
+
+a → int
+
+เกิด implicit type conversion (double → int)
+ค่าทศนิยมจะหาย
+
+c) b = functionN(a, b);
+
+ไม่ผิด แต่ไม่ตรงชนิด
+
+functionN(int, double)
+
+ส่ง b (int) ไปแทน double
+
+C แปลง int → double ให้อัตโนมัติ
+✔ ใช้ได้ แต่ไม่สวย
+
+d) r = functionO(r, a, s, b);
+
+ถูกต้อง
+
+functionO(double, int, double, int)
+
+r(double), a(int), s(double), b(int)
+
+ชนิดตรงทุกตัว
+
+return double → เก็บใน r ✔
+
+e) s = functionP(a, b, c, d, e);
+
+ผิด
+
+functionP รับ 4 ตัว
+
+แต่ส่งมา 5 ตัว
+จำนวนพารามิเตอร์ไม่ตรง
+
+f) u = functionM();
+
+ถูกต้อง
+
+functionM() → double
+
+u เป็น double
+
+ตรงเป๊ะ
+
+g) c = d + functionN(r, s);
+
+ผิด
+
+functionN(int, double)
+
+แต่ส่ง r (double) เป็นพารามิเตอร์ตัวที่ 1 ❌
+
+ควรเป็น int
+
+h) t = s * functionO(r, a, r, a);
+
+ถูกต้อง
+
+พารามิเตอร์ตรงชนิด
+
+functionO คืน double
+
+s * double → double
+
+เก็บใน t(double) ✔
+
+i) a = v + functionP(r, s, t, t);
+
+ผิดหลายจุด
+
+functionP(int, int, int, int)
+
+แต่ส่ง r, s, t, t → double ทั้งหมด ❌
+
+ผลรวมเป็น double แต่เก็บใน int a ❌	
+
+j) functionP(functionN(a, a), s, t, t+r);
+
+ผิด
+
+functionN(a, a) ✔ (int, double)
+
+แต่ s, t, t+r เป็น double
+
+functionP ต้องการ int ทุกตัว
+
+k) v = functionP(functionN(a, a), s, t, t+r);
+ผิด
+
+พารามิเตอร์ผิดแบบเดียวกับข้อ j
+
+ถึงแม้ v เป็น double แต่ functionP รับ int ทั้งหมด
